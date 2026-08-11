@@ -206,6 +206,7 @@ target.py：POST 后端 /api/v2/save?calculate_rks=true
 | N 长期未知 | notes.csv（W4/用户文件）优先；HUD 灰态不判红（除需 Phi） |
 | 接收器安装失败/启动挂起 | 备选 uxplay-windows；再失败→摄像头兜底或 v0.3 延期并在报告说明 |
 | AirPlay 窗口标题不稳定 | 关键词多候选 + 手填 title + 2s 轮询重连 |
+| AirPlay Wi-Fi 镜像不可用/卡顿 | iPad 已 USB-C 有线连接：WLAN 失败改试"USB 个人热点"有线 AirPlay 路径（延迟更低） |
 | 镜像延迟 100-300ms | 计数滞后可接受，不参与触控 |
 | TAP_SESSION_TOKEN 缺失 | target.py mock 全链路自测，报告标注"待用户填 token" |
 | 后端不在运行/端口占用 | v0.4 提示检测 3930 存活；v0.5 后可用 start-backend.ps1 自起 |
@@ -222,14 +223,11 @@ target.py：POST 后端 /api/v2/save?calculate_rks=true
 ## 15. 用户凭据占位（由用户填入）
 
 > GIT：无需 token，SSH 已配置（id_rsa_github，端口 22 已验证）。
-> 执行者注意：读取本节后把 token 迁移到 `.secrets/session_token.txt`（gitignore），并**抹除本节中的 token 值后**提交。
-
-```
-TAP_SESSION_TOKEN = <用户在此粘贴 TapTap sessionToken，登录 lilith 网页同款>
-```
+> **TAP_SESSION_TOKEN 已于 2026-08-12 迁移至 `.secrets/session_token.txt`（gitignore，不入库），本文件已抹除。** 执行者只从 `.secrets/session_token.txt` 读取，勿再写入任何被 git 追踪的文件。
 
 ## 16. 下一会话开场指导
 
 1. 新开 session（建议，见会话结束说明）；工作目录 = `D:\Documents\Phi\RealtimeAcc`；opencode.json 权限在重启后生效（question=deny 等）。
 2. 先读本文档 → `git pull --rebase`（远端可能已有本会话首推的初始化提交）。
 3. 处理 §15 凭据 → 建 `.secrets/` → 执行 §12。
+4. **环境备忘（2026-08-12 已具备）**：iPad 已通过 **USB-C 线直连 PC**（有线）。**AirPlay 可用性待实测**：v0.3 装接收器（1PhoneMirror/uxplay-windows）后，先在 iPad 控制中心→屏幕镜像选 PC（Wi-Fi 路径）；若 Wi-Fi 镜像不可用或卡顿，**改试"USB 个人热点"有线路径**（uxplay 系接收器原生支持经 USB 走 AirPlay，延迟更低，可避开 Wi-Fi 干扰）。实测结果记入 v0.3 验证报告。
