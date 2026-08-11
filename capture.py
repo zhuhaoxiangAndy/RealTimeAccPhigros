@@ -32,6 +32,25 @@ def frames_from_video(path: str, cfg: GameConfig) -> Iterator[tuple[int, np.ndar
         cap.release()
 
 
-def live_frames(cfg: GameConfig) -> Iterator[tuple[int, np.ndarray]]:
-    """Yield (frame_index, bgr_frame) from the primary monitor (v0.3)."""
-    raise NotImplementedError("live capture lands in v0.3")
+def live_frames(cfg: GameConfig, region: Optional[tuple] = None
+                ) -> Iterator[tuple[int, np.ndarray]]:
+    """Yield (frame_index, bgr_frame) from the primary monitor (live mode).
+
+    `region` selects (left, top, width, height) of the monitor (defaults to
+    the full monitor). Runs at the monitor refresh rate; the caller applies
+    its own sampling cadence.
+    """
+    import mss
+    import time
+
+    with mss.mss() as sct:
+        mon = region or sct.monitors[1]
+        box = {"left": mon[0], "top": mon[1],
+               "width": mon[2], "height": mon[3]}
+        idx = 0
+        while True:
+            shot = sct.grab(box)
+            arr = np.asarray(shot)[:, :, :3]
+            yield idx, cv2.cvtColor(arr, cv2.COLOR_BGR2RGB)
+            idx += 1
+            time.sleep(0.01)

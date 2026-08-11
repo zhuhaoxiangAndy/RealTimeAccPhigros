@@ -2,6 +2,7 @@
 # Copy to config.toml and adjust for your resolution/recording.
 
 [video]
+video_path = "sample.mp4"   # bundled reference recording
 fps = 60
 # play window of the bundled reference recording (auto-anchor fallback)
 start = 1950
