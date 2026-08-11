@@ -27,3 +27,11 @@ miss = 0.0
 
 [goal]
 acc = 0.95
+
+# Settlement fixture of the bundled reference recording (ground truth).
+# Read from the settlement page during deep analysis of sample.mp4.
+[expect]
+p = 693
+g = 35
+b = 1
+m = 4

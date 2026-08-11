@@ -44,6 +44,7 @@ class GameConfig:
     weights: JudgeWeights = field(default_factory=JudgeWeights)
     goal_acc: float = 0.95  # v0.4 target; unused below
 
+    expected: Optional[tuple] = None  # (P, G, B, M) settlement fixture
     sample_step: int = 12    # frame step while scanning offline video
     delta_cap: int = 22000   # max plausible score delta between samples
 
@@ -70,6 +71,9 @@ class GameConfig:
         for k in ("start", "end"):
             if k in vid:
                 setattr(self, k, vid[k])
+        exp = raw.get("expect")
+        if exp is not None:
+            self.expected = tuple(exp[k] for k in ("p", "g", "b", "m"))
         for k in ("video_path", "fps", "sample_step", "delta_cap", "goal_acc"):
             if k in vid:
                 setattr(self, k, vid[k])
