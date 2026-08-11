@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "question": "deny",
+    "read": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "todowrite": "allow",
+    "edit": { "*": "deny", "D:/Documents/Phi/RealtimeAcc/**": "allow" },
+    "glob": { "*": "deny", "D:/Documents/Phi/RealtimeAcc/**": "allow" },
+    "grep": { "*": "deny", "D:/Documents/Phi/RealtimeAcc/**": "allow" },
+    "list": { "*": "deny", "D:/Documents/Phi/RealtimeAcc/**": "allow" },
+    "bash": {
+      "*": "allow",
+      "rm *": "deny",
+      "rm": "deny",
+      "git rm *": "deny",
+      "Remove-Item": "deny",
+      "Remove-Item *": "deny",
+      "del *": "deny",
+      "erase *": "deny",
+      "rmdir *": "deny",
+      "rd *": "deny"
+    },
+    "external_directory": { "*": "allow" }
+  }
+}

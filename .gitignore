@@ -1,0 +1,19 @@
+# 凭据与本地配置（绝不入库）
+.secrets/
+config.local.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 运行产物
+runs/
+.trash/
+
+# 本地素材（不入库，用户本地提供）
+sample.mp4
+
+# 后端随仓：构建产物与本地配置
+backend/target/
+backend/config.toml
