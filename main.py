@@ -81,7 +81,9 @@ def _live_run(cfg, demo: bool) -> int:
                     prev = score
                     n = P + G
                     acc = (P + 0.65 * G) / n * 100.0 if n else 0.0
-                    red = is_red(P, G, n, cfg.goal_acc * 100.0)
+                    from target import Target
+
+                    red = Target.from_config(cfg).verdict(P, G, n)
                     dt = (time.monotonic() - t0) / max(1, frames_done) * 1000
                     print(f"P {P:>3}  G {G:>3}  N {n:>3}  ACC {acc:6.2f}%"
                           f"  {dt:5.0f}ms/f  RED={red}")
