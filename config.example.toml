@@ -1,0 +1,29 @@
+# RealtimeAcc example configuration.
+# Copy to config.toml and adjust for your resolution/recording.
+
+[video]
+fps = 60
+# play window of the bundled reference recording (auto-anchor fallback)
+start = 1950
+end = 10420
+sample_step = 12          # offline scan step (frames)
+delta_cap = 22000         # max plausible score jump between samples
+
+[box]
+score = [1910, 55, 450, 90]   # 2360x1640 recording, score top-right
+result = [1150, 950, 700, 300]
+
+[ocr]
+clip_limit = 2.0
+threshold = 100
+psm = 7
+whitelist = "0123456789"
+
+[judge.weights]
+perfect = 1.0
+good = 0.65
+bad = 0.0
+miss = 0.0
+
+[goal]
+acc = 0.95
