@@ -1,0 +1,4 @@
+song_id,difficulty,note_count
+# template: fill from a trusted note-count source (TECH_REQ ch.5); parser accepts
+# song_id or song name, and difficulty aliases (EZ/HD/IN/AT). Example row:
+winter_cube,IN,733
